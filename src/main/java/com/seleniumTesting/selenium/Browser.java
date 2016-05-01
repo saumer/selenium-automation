@@ -10,9 +10,14 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 /**
  * Created by Jeremy on 4/29/2016.
  */
-public class Driver {
-    public static FirefoxDriver createFireFoxDriver() {
-        FirefoxDriver browser = new FirefoxDriver();
-        return browser;
+public class Browser {
+    public static FirefoxDriver webBrowser = new FirefoxDriver();
+
+    public static FirefoxDriver createBrowser() {
+        return webBrowser;
+    }
+
+    public static void close() {
+        webBrowser.close();
     }
 }

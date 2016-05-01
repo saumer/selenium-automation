@@ -12,7 +12,7 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Wait;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import com.seleniumTesting.selenium.Driver;
+import com.seleniumTesting.selenium.Browser;
 import java.util.concurrent.TimeUnit;
 
 
@@ -20,7 +20,7 @@ public class HomePageTest {
     @Test
     public void testSeachButtonExists(){
 
-        FirefoxDriver browser = Driver.createFireFoxDriver();
+        FirefoxDriver browser = Browser.webBrowser;
         System.out.println(HomePage.url);
         browser.get(HomePage.url);
         System.out.println(HomePage.searchButton);
@@ -40,8 +40,9 @@ public class HomePageTest {
 
         browser.findElement(HomePage.searchBox).sendKeys("test text here");
         browser.findElement(HomePage.searchButton).click();
-        ExpectedConditions.urlContains("doBasicSearch?Query=");
+        String url = browser.getCurrentUrl();
+        assert(url.contains("doBasicSearch?Query"));
 
-
+        browser.close();
     }
 }
