@@ -1,7 +1,6 @@
-package com.seleniumTesting.selenium;
+package com.seleniumTesting.jstor;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
 
 
 /**
@@ -12,6 +11,7 @@ public class HomePage {
     public static final By searchBox = By.id("searchBox");
     public static final By searchButton = By.xpath("//button");
 //    public static final String searchBox = "searchBox";
+
 
 
 }

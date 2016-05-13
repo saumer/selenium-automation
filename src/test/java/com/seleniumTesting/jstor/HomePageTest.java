@@ -1,22 +1,18 @@
-package com.seleniumTesting.selenium;
+package com.seleniumTesting.jstor;
 
 /**
  * Created by Jeremy on 4/29/2016.
  */
 
+import com.seleniumTesting.Browser;
 import org.junit.Test;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.support.ui.ExpectedCondition;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Wait;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import com.seleniumTesting.selenium.Browser;
 import java.util.concurrent.TimeUnit;
 
 
 public class HomePageTest {
+
+
     @Test
     public void testSeachButtonExists(){
 
