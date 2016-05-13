@@ -11,11 +11,11 @@ import org.openqa.selenium.By;
  * Created by Jeremy on 4/29/2016.
  */
 public class Browser {
-    public static FirefoxDriver webBrowser = new FirefoxDriver();
+    public FirefoxDriver webBrowser = new FirefoxDriver();
     public WebDriverWait browserWait = new WebDriverWait(webBrowser, 5);
 
 
-    public static FirefoxDriver createBrowser() {
+    public FirefoxDriver createBrowser() {
         return webBrowser;
     }
 
@@ -24,7 +24,7 @@ public class Browser {
     }
 
 
-    public static void close() {
+    public void close() {
         webBrowser.close();
     }
 }

@@ -19,18 +19,18 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class LocatorWorkflows {
     @Test
     public void annArborStoreLocatesSuccessfuly (){
-        FirefoxDriver browser = Browser.webBrowser;
+        Browser currentBrowser = new Browser();
+
         System.out.println(HomePage.url);
-        browser.get(HomePage.url);
-        browser.findElement(HomePage.linkLocation).sendKeys(Keys.RETURN);
+        currentBrowser.webBrowser.get(HomePage.url);
+        currentBrowser.webBrowser.findElement(HomePage.linkLocation).sendKeys(Keys.RETURN);
 
 
-        Browser wait = new Browser();
-        wait.webBrowserWait(4, LocationFinder.txtBoxCity);
-        browser.findElement(LocationFinder.txtBoxCity).sendKeys("Annarbor");
-        browser.findElement(LocationFinder.txtBoxZipCode).sendKeys("48104");
+        currentBrowser.webBrowserWait(4, LocationFinder.txtBoxCity);
+        currentBrowser.webBrowser.findElement(LocationFinder.txtBoxCity).sendKeys("Annarbor");
+        currentBrowser.webBrowser.findElement(LocationFinder.txtBoxZipCode).sendKeys("48104");
 
-        browser.close();
+        currentBrowser.close();
     }
 
 }
