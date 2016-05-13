@@ -8,9 +8,15 @@ import org.openqa.selenium.By;
 public class LocationFinder {
     public static final String url = "http://www.dominos.com";
 
+    //buttons
+    public static final By btnSearchLocations = By.className("c-locationsearch-search-cta");
+
     //textboxes
     public static final By txtBoxCity = By.id("City");
     public static final By txtBoxZipCode = By.id("Postal_Code");
+
+    //select dropdown
+    public static final By selectState = By.id("Region");
 
 
 
