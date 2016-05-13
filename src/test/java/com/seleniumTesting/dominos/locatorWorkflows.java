@@ -1,6 +1,8 @@
 package com.seleniumTesting.dominos;
 
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ErrorCollector;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
@@ -15,11 +17,16 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import static com.seleniumTesting.dominos.LocationSearchResults.btnOrderOnline;
+import static org.hamcrest.core.IsEqual.equalTo;
+
 /**
  * Created by jerem on 5/12/2016.
  */
 
 public class LocatorWorkflows {
+    @Rule
+    public ErrorCollector collector = new ErrorCollector();
     @Test
     public void annArborStoreLocatesSuccessfuly (){
         Browser currentBrowser = new Browser();
@@ -39,11 +46,9 @@ public class LocatorWorkflows {
         System.out.println(searchResults.size());
 
         for (int i = 0; i < searchResults.size(); i++) {
-            System.out.println(searchResults.get(i).getText());
+            WebElement orderButton = searchResults.get(i).findElement(btnOrderOnline);
+            collector.checkThat(orderButton.getText(), equalTo("ORDER CARRYOUT / PICKUP"));
         }
-
-
-
         currentBrowser.close();
     }
 
