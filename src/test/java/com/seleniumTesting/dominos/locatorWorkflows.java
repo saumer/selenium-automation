@@ -31,7 +31,6 @@ public class LocatorWorkflows {
     public void annArborStoreLocatesSuccessfuly (){
         Browser currentBrowser = new Browser();
 
-        System.out.println(HomePage.url);
         currentBrowser.webBrowser.get(HomePage.url);
         currentBrowser.webBrowser.findElement(HomePage.linkLocation).sendKeys(Keys.RETURN);
 
@@ -43,8 +42,8 @@ public class LocatorWorkflows {
         select.selectByVisibleText("MI");
         currentBrowser.webBrowser.findElement(LocationFinder.btnSearchLocations).click();
         List<WebElement> searchResults = currentBrowser.webBrowser.findElements(LocationSearchResults.divsSearchResults);
-        System.out.println(searchResults.size());
-
+        
+        collector.checkThat(searchResults.size(), equalTo(10));
         for (int i = 0; i < searchResults.size(); i++) {
             WebElement orderButton = searchResults.get(i).findElement(btnOrderOnline);
             collector.checkThat(orderButton.getText(), equalTo("ORDER CARRYOUT / PICKUP"));
