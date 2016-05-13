@@ -12,7 +12,6 @@ import org.openqa.selenium.By;
  */
 public class Browser {
     public FirefoxDriver webBrowser = new FirefoxDriver();
-    public WebDriverWait browserWait = new WebDriverWait(webBrowser, 5);
 
 
     public FirefoxDriver createBrowser() {
@@ -20,6 +19,7 @@ public class Browser {
     }
 
     public void webBrowserWait(int time, By element) {
+        WebDriverWait browserWait = new WebDriverWait(webBrowser, time);
         browserWait.until(ExpectedConditions.visibilityOfElementLocated(element));
     }
 
