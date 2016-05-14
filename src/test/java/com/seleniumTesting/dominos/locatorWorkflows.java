@@ -19,6 +19,8 @@ import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+import java.util.regex.Pattern;
+
 import com.seleniumTesting.dominos.HomePage;
 import com.seleniumTesting.Browser;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -26,6 +28,7 @@ import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import static com.seleniumTesting.dominos.LocationSearchResults.btnOrderOnline;
+import static com.seleniumTesting.dominos.LocationSearchResults.divStreetAddress;
 import static org.hamcrest.core.IsEqual.equalTo;
 
 /**
@@ -86,6 +89,10 @@ public class LocatorWorkflows {
                 searchResults.get(0).getAttribute("data-type");
                 System.out.print(searchResults.get(0).getText());
                 collector.checkThat(searchResults.get(0).getAttribute("data-type"), equalTo("Delivery"));
+                Boolean test = Pattern.compile(Pattern.quote(location.getStoreAddress()), Pattern.CASE_INSENSITIVE).matcher(searchResults.get(0).findElement(divStreetAddress).getText()).find();
+
+                System.out.print(test);
+//                collector.checkThat((, Pattern.compile(Pattern.quote(s2), Pattern.CASE_INSENSITIVE).matcher(s1).find();));
             }
         }
         catch (java.io.IOException e){ System.out.print(e);
