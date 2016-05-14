@@ -27,6 +27,7 @@ import static org.hamcrest.core.IsEqual.equalTo;
 public class LocatorWorkflows {
     @Rule
     public ErrorCollector collector = new ErrorCollector();
+
     @Test
     public void annArborStoreLocatesSuccessfuly (){
         Browser currentBrowser = new Browser();
@@ -34,20 +35,28 @@ public class LocatorWorkflows {
         currentBrowser.webBrowser.get(HomePage.url);
         currentBrowser.webBrowser.findElement(HomePage.linkLocation).sendKeys(Keys.RETURN);
 
-
         currentBrowser.webBrowserWait(4, LocationFinder.txtBoxCity);
-        currentBrowser.webBrowser.findElement(LocationFinder.txtBoxCity).sendKeys("Annarbor");
-        currentBrowser.webBrowser.findElement(LocationFinder.txtBoxZipCode).sendKeys("48104");
-        Select select = new Select(currentBrowser.webBrowser.findElement(LocationFinder.selectState));
-        select.selectByVisibleText("MI");
+        LocationFinder.setRequiredLocationInfo(currentBrowser,"Annarbor","MI","48108");
         currentBrowser.webBrowser.findElement(LocationFinder.btnSearchLocations).click();
+        currentBrowser.webBrowserWait(4, LocationSearchResults.divsSearchResults);
         List<WebElement> searchResults = currentBrowser.webBrowser.findElements(LocationSearchResults.divsSearchResults);
         
         collector.checkThat(searchResults.size(), equalTo(10));
         for (int i = 0; i < searchResults.size(); i++) {
             WebElement orderButton = searchResults.get(i).findElement(btnOrderOnline);
             collector.checkThat(orderButton.getText(), equalTo("ORDER CARRYOUT / PICKUP"));
+            collector.checkThat(orderButton.getText(), equalTo("ORDER CARRYOUT / PICKUP"));
         }
+        currentBrowser.close();
+    }
+
+    @Test
+    public void incorectZipCodeBehavesCorrectly() {
+        Browser currentBrowser = new Browser();
+        currentBrowser.webBrowser.get(LocationFinder.url);
+        LocationFinder.setRequiredLocationInfo(currentBrowser,"Annarbor","MI","48-08");
+        String zipCode = currentBrowser.webBrowser.findElement(LocationFinder.txtBoxZipCode).getAttribute("value");
+        collector.checkThat(zipCode, equalTo("4808"));
         currentBrowser.close();
     }
 
