@@ -16,6 +16,7 @@ public class LocationFinder {
     //textboxes
     public static final By txtBoxCity = By.id("City");
     public static final By txtBoxZipCode = By.id("Postal_Code");
+    public static final By txtBoxStreet = By.id("Street");
 
     //select dropdown
     public static final By selectState = By.id("Region");

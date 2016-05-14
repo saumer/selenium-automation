@@ -10,6 +10,7 @@ public class LocationSearchResults {
 
     //div
     public static final By divsSearchResults = By.className("location-search-result");
+    public static final By divDeliverySearchResults = By.className("");
 
     //buttons
     public static final By btnOrderOnline = By.className("btn--block");
