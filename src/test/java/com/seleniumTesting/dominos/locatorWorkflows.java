@@ -1,33 +1,23 @@
 package com.seleniumTesting.dominos;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.seleniumTesting.utilities.JsonParsing.UserAddress;
+import com.seleniumTesting.utilities.RestApi.WeatherRestApi;
+import com.seleniumTesting.utilities.UserAddress;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ErrorCollector;
-import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.firefox.FirefoxDriver;
 //import org.openqa.selenium.interactions.Keyboard;
 
 
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.Arrays;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 import java.util.regex.Pattern;
 
-import com.seleniumTesting.dominos.HomePage;
 import com.seleniumTesting.Browser;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-import com.seleniumTesting.utilities.JsonParsing.JsonParsingUtils;
+import com.seleniumTesting.utilities.JsonParsingUtils;
+import com.seleniumTesting.utilities.RestApi.WeatherRestApi;
+import org.springframework.web.client.RestTemplate;
 
 import static com.seleniumTesting.dominos.LocationSearchResults.btnOrderOnline;
 import static com.seleniumTesting.dominos.LocationSearchResults.divStreetAddress;
@@ -95,6 +85,15 @@ public class LocatorWorkflows {
         catch (java.io.IOException e){ System.err.print(e);
         }
         currentBrowser.close();
+    }
+
+    @Test
+    public void checkRest(){
+//        final String uri = "http://api.openweathermap.org/data/2.5/weather?q=London,uk&appid=973f7c4dccaa422921add219c3051e63";
+        WeatherRestApi weatherReport = new WeatherRestApi();
+        String weatherResults = weatherReport.getLocationWeather("London,UK");
+        System.out.println(weatherResults);
+
     }
 
 }
