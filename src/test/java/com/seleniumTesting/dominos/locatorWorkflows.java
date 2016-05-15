@@ -50,7 +50,7 @@ public class LocatorWorkflows {
         currentBrowser.webBrowser.findElement(HomePage.linkLocation).sendKeys(Keys.RETURN);
 
         currentBrowser.webBrowserWait(4, LocationFinder.txtBoxCity);
-        LocationFinder.setRequiredLocationInfo(currentBrowser,"Annarbor","MI","48108");
+        LocationFinder.setRequiredLocationInfo(currentBrowser,"","","Annarbor","MI","48108");
         currentBrowser.webBrowser.findElement(LocationFinder.btnSearchLocations).click();
         List<WebElement> searchResults = LocationSearchResults.getStorLocationSearchResults(currentBrowser);
         
@@ -66,7 +66,8 @@ public class LocatorWorkflows {
     public void incorectZipCodeBehavesCorrectly() {
         Browser currentBrowser = new Browser();
         currentBrowser.webBrowser.get(LocationFinder.url);
-        LocationFinder.setRequiredLocationInfo(currentBrowser,"Annarbor","MI","48-08");
+        currentBrowser.webBrowserWait(4, LocationFinder.txtBoxCity);
+        LocationFinder.setRequiredLocationInfo(currentBrowser,"","","Annarbor","MI","48-08");
         String zipCode = currentBrowser.webBrowser.findElement(LocationFinder.txtBoxZipCode).getAttribute("value");
         collector.checkThat(zipCode, equalTo("4808"));
         currentBrowser.close();
@@ -79,9 +80,10 @@ public class LocatorWorkflows {
             List<UserAddress> myObjects = JsonParsingUtils.getAndParseUserAddress("C:\\Users\\jerem\\Documents\\json_for_automation\\location_import_examples.json");
             for (int i = 0; i < myObjects.size(); i++) {
                 currentBrowser.webBrowser.get(LocationFinder.url);
+                currentBrowser.webBrowserWait(4, LocationFinder.txtBoxCity);
+
                 UserAddress location = myObjects.get(i);
-                LocationFinder.setRequiredLocationInfo(currentBrowser,location.getCity(),location.getState(),location.getZipcode());
-                currentBrowser.webBrowser.findElement(LocationFinder.txtBoxStreet).sendKeys(location.getStreet());
+                LocationFinder.setRequiredLocationInfo(currentBrowser,location.getStreet(),location.getAptNum(), location.getCity(),location.getState(),location.getZipcode());
                 currentBrowser.webBrowser.findElement(LocationFinder.btnSearchLocations).click();
 
                 List<WebElement> searchResults = LocationSearchResults.getStorLocationSearchResults(currentBrowser);
