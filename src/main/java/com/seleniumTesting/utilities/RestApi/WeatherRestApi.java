@@ -35,4 +35,8 @@ public class WeatherRestApi {
         BasicWeather weatherObject = mapper.readValue(weather, BasicWeather.class);
         return weatherObject;
     }
+
+    public boolean topLevelKeysExist(String location){
+        
+    }
 }
