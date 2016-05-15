@@ -8,10 +8,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.rules.ErrorCollector;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 import static org.hamcrest.core.IsEqual.equalTo;
 
@@ -24,13 +21,14 @@ public class WeatherApiTest {
 
     @Test
     public void checkExpectedKeysExist(){
-        Set<String> expectedKeys = new HashSet<String>(Arrays.asList("dt", "coord", "weather",
-                "name", "cod", "main", "clouds", "id", "sys", "base", "wind"));
+        WeatherRestApi weatherObject = new WeatherRestApi();
+        ArrayList<String> locations = new ArrayList<String>();
+        Collections.addAll(locations, "London, UK", "Detroit, MI", "Aiken, GA", "Accra GH");
         try {
-            WeatherRestApi weatherReport = new WeatherRestApi();
-            String weatherResults = weatherReport.getLocationWeather("London,UK");
-            HashMap<String,Object> weatherObject = new ObjectMapper().readValue(weatherResults, HashMap.class);
-            collector.checkThat(weatherObject.keySet().equals(expectedKeys), equalTo(true));
+            for (int i = 0; i < locations.size(); i++){
+                Boolean keysMatch = weatherObject.topLevelKeysExist(locations.get(i));
+                collector.checkThat(keysMatch, equalTo(true));
+            }
         } catch (java.io.IOException e){
             System.err.println(e);
         }
