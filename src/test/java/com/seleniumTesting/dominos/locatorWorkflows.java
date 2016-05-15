@@ -1,7 +1,7 @@
 package com.seleniumTesting.dominos;
 
 import com.seleniumTesting.utilities.RestApi.WeatherRestApi;
-import com.seleniumTesting.utilities.UserAddress;
+import com.seleniumTesting.utilities.ParsingUtils.UserAddress;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ErrorCollector;
@@ -15,9 +15,7 @@ import java.util.regex.Pattern;
 
 import com.seleniumTesting.Browser;
 
-import com.seleniumTesting.utilities.JsonParsingUtils;
-import com.seleniumTesting.utilities.RestApi.WeatherRestApi;
-import org.springframework.web.client.RestTemplate;
+import com.seleniumTesting.utilities.ParsingUtils.JsonParsingUtils;
 
 import static com.seleniumTesting.dominos.LocationSearchResults.btnOrderOnline;
 import static com.seleniumTesting.dominos.LocationSearchResults.divStreetAddress;
@@ -85,15 +83,6 @@ public class LocatorWorkflows {
         catch (java.io.IOException e){ System.err.print(e);
         }
         currentBrowser.close();
-    }
-
-    @Test
-    public void checkRest(){
-//        final String uri = "http://api.openweathermap.org/data/2.5/weather?q=London,uk&appid=973f7c4dccaa422921add219c3051e63";
-        WeatherRestApi weatherReport = new WeatherRestApi();
-        String weatherResults = weatherReport.getLocationWeather("London,UK");
-        System.out.println(weatherResults);
-
     }
 
 }

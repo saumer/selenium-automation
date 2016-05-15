@@ -1,4 +1,4 @@
-package com.seleniumTesting.utilities;
+package com.seleniumTesting.utilities.ParsingUtils;
 
 /**
  * Created by jerem on 5/14/2016.

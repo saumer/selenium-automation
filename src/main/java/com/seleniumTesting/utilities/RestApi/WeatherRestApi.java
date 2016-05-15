@@ -1,8 +1,14 @@
 package com.seleniumTesting.utilities.RestApi;
 
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.seleniumTesting.utilities.ParsingUtils.BasicWeather;
+import com.seleniumTesting.utilities.ParsingUtils.UserAddress;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
+
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Created by jerem on 5/15/2016.
@@ -22,5 +28,11 @@ public class WeatherRestApi {
         String result = restTemplate.getForObject(builder.build().encode().toUri(), String.class);
         System.out.println(result);
         return result;
+    }
+
+    public BasicWeather parseLocationWeather(String weather)throws java.io.IOException {
+        ObjectMapper mapper = new ObjectMapper();
+        BasicWeather weatherObject = mapper.readValue(weather, BasicWeather.class);
+        return weatherObject;
     }
 }
