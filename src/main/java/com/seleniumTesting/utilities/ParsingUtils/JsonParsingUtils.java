@@ -1,4 +1,4 @@
-package com.seleniumTesting.utilities.JsonParsing;
+package com.seleniumTesting.utilities.ParsingUtils;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 

@@ -1,33 +1,21 @@
 package com.seleniumTesting.dominos;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.seleniumTesting.utilities.JsonParsing.UserAddress;
+import com.seleniumTesting.utilities.RestApi.WeatherRestApi;
+import com.seleniumTesting.utilities.ParsingUtils.UserAddress;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ErrorCollector;
-import org.openqa.selenium.By;
 import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.firefox.FirefoxDriver;
 //import org.openqa.selenium.interactions.Keyboard;
 
 
-import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Paths;
-import java.util.Arrays;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 import java.util.regex.Pattern;
 
-import com.seleniumTesting.dominos.HomePage;
 import com.seleniumTesting.Browser;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Select;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-import com.seleniumTesting.utilities.JsonParsing.JsonParsingUtils;
+import com.seleniumTesting.utilities.ParsingUtils.JsonParsingUtils;
 
 import static com.seleniumTesting.dominos.LocationSearchResults.btnOrderOnline;
 import static com.seleniumTesting.dominos.LocationSearchResults.divStreetAddress;
