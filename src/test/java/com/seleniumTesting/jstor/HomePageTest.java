@@ -13,32 +13,23 @@ import java.util.concurrent.TimeUnit;
 public class HomePageTest {
 
 
-//    @Test
-//    public void testSeachButtonExists(){
-//
-//        FirefoxDriver browser = Browser.webBrowser;
-//        System.out.println(HomePage.url);
-//        browser.get(HomePage.url);
-//        System.out.println(HomePage.searchButton);
-//        try{
-//            TimeUnit.SECONDS.sleep(2);
-//        } catch (InterruptedException e)
-//        {
-//
-//        }
-//        Boolean isPresent = browser.findElements(HomePage.searchBox).size() > 0;
-//        System.out.println(isPresent);
-//        assert(isPresent);
-//
-//        isPresent = browser.findElements(HomePage.searchButton).size() > 0;
-//        System.out.println(isPresent);
-//        assert(isPresent);
-//
-//        browser.findElement(HomePage.searchBox).sendKeys("test text here");
-//        browser.findElement(HomePage.searchButton).click();
-//        String url = browser.getCurrentUrl();
-//        assert(url.contains("doBasicSearch?Query"));
-//
-//        browser.close();
-//    }
+    @Test
+    public void testSeachButtonExists(){
+
+        Browser currentBrowser = new Browser();
+        currentBrowser.webBrowser.get(HomePage.url);
+        currentBrowser.webBrowserWait(5, HomePage.searchBox);
+        Boolean isPresent = currentBrowser.webBrowser.findElements(HomePage.searchBox).size() > 0;
+        assert(isPresent);
+
+        isPresent = currentBrowser.webBrowser.findElements(HomePage.searchButton).size() > 0;
+        assert(isPresent);
+
+        currentBrowser.webBrowser.findElement(HomePage.searchBox).sendKeys("test text here");
+        currentBrowser.webBrowser.findElement(HomePage.searchButton).click();
+        String url = currentBrowser.webBrowser.getCurrentUrl();
+        assert(url.contains("doBasicSearch?Query"));
+
+        currentBrowser.webBrowser.close();
+    }
 }
